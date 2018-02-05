@@ -1,0 +1,5 @@
+-I can generate a tsconfig.json with the command "tsc -init"
+-I can define a default directory in tsconfig.json (outDir property), 
+where my compiled javascripts file will be stored
+-After I run the command 'tsc -w', all changes made in typescript files will automatically be made in javascript files
+-I can define target property in tsconfig.json (ES3, ES5, ES6, ESNext) (amazing!!)

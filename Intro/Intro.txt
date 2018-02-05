@@ -1,0 +1,3 @@
+-Typescript can compile ES6 code to ES5, avoiding browser issues
+-Typescript is installed with npm
+-Typescript files are saved with .ts extension
