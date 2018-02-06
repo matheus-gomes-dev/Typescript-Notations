@@ -27,8 +27,9 @@ console.log(carroA)
 console.log(carroA.modelo) //error: modelo is a private attribute: I can access only within my Object
 */
 var Concessionaria = /** @class */ (function () {
-    function Concessionaria(endereco) {
+    function Concessionaria(endereco, listaDeCarros) {
         this.endereco = endereco;
+        this.listaDeCarros = listaDeCarros;
     }
     Concessionaria.prototype.fornecerEndereco = function () {
         return this.endereco;
@@ -38,8 +39,6 @@ var Concessionaria = /** @class */ (function () {
     };
     return Concessionaria;
 }());
-var concessionaria = new Concessionaria('Av Paulista');
-console.log(concessionaria);
 var Person = /** @class */ (function () {
     function Person(name, favoriteCar) {
         this.name = name;
@@ -61,3 +60,19 @@ var Person = /** @class */ (function () {
 }());
 var person = new Person('Joseph', 'Veloster');
 console.log(person.sayFavoriteCar());
+/* --- criar carros ---*/
+var carroA = new Carro('dodge journey', 4);
+var carroB = new Carro('veloster', 3);
+var carroC = new Carro('cerato', 4);
+/* --- montar a lista de carros da concessionária --- */
+var listaDeCarros = [carroA, carroB, carroC];
+var concessionaria = new Concessionaria('Av Paulista', listaDeCarros);
+console.log(concessionaria.mostrarListaDeCarros());
+/* --- comprar o carro --- */
+var cliente = new Person('Peter', 'veloster');
+console.log(cliente.sayCarsOwn());
+concessionaria.mostrarListaDeCarros().map(function (carro) {
+    if (carro['modelo'] == cliente.sayFavoriteCar())
+        cliente.buyCar(carro);
+});
+console.log(cliente.sayCarsOwn());

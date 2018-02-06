@@ -34,28 +34,28 @@ console.log(carroA.modelo) //error: modelo is a private attribute: I can access 
 
 class Concessionaria{
     private endereco: string
-    private listaDeCarros: any
+    private listaDeCarros: Array<Carro>
 
-    constructor(endereco: string){
+    constructor(endereco: string, listaDeCarros: Array<Carro>){
     	this.endereco = endereco
+    	this.listaDeCarros = listaDeCarros
     }
 
     public fornecerEndereco(): string{
         return this.endereco
     }
 
-    public mostrarListaDeCarros(): any{
+    public mostrarListaDeCarros(): Array<Carro>{
         return this.listaDeCarros
     }
 }
 
-let concessionaria = new Concessionaria('Av Paulista');
-console.log(concessionaria)
+
 
 class Person{
 	private name: string
 	private favoriteCar: string
-	private car: any
+	private car: Carro
 
 	constructor(name: string, favoriteCar: string){
 		this.name = name
@@ -70,14 +70,35 @@ class Person{
 		return this.favoriteCar
 	}
 
-	public buyCar(car: any): void{
+	public buyCar(car: Carro): void{
 		this.car = car
 	}
 
-	public sayCarsOwn(): any{
+	public sayCarsOwn(): Carro{
 		return this.car
 	}
 }
 
 let person = new Person('Joseph', 'Veloster')
 console.log(person.sayFavoriteCar())
+
+/* --- criar carros ---*/
+
+let carroA = new Carro('dodge journey', 4);
+let carroB = new Carro('veloster', 3);
+let carroC = new Carro('cerato', 4);
+
+
+/* --- montar a lista de carros da concessionária --- */
+let listaDeCarros: Carro[] = [carroA, carroB, carroC];
+let concessionaria = new Concessionaria('Av Paulista', listaDeCarros);
+console.log(concessionaria.mostrarListaDeCarros());
+
+/* --- comprar o carro --- */
+let cliente = new Person('Peter', 'veloster')
+console.log(cliente.sayCarsOwn())
+concessionaria.mostrarListaDeCarros().map((carro: Carro) => {
+	if(carro['modelo'] == cliente.sayFavoriteCar())
+		cliente.buyCar(carro)
+})
+console.log(cliente.sayCarsOwn())
