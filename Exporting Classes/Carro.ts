@@ -1,0 +1,24 @@
+//quando uso default para exportar, na hora de importar posso fazer
+// "import Carro from './Carro'". Sem o default ficaria "import {Carro} from './Carro'"
+export default class Carro { 
+    private modelo: string
+    private numeroDePortas: number
+    private velocidade: number = 0
+
+    constructor(modelo: string, numeroDePortas: number) {
+        this.modelo = modelo
+        this.numeroDePortas = numeroDePortas
+    }
+
+    public acelerar(): void {
+        this.velocidade = this.velocidade + 10
+    }
+
+    public parar(): void {
+        this.velocidade = 0
+    }
+
+    public velocidadeAtual(): number {
+        return this.velocidade
+    }
+}
